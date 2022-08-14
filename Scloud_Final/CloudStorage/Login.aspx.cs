@@ -28,8 +28,7 @@ namespace CloudStorage
         protected void Button1_Click(object sender, EventArgs e)
         {
             /*Make a SQL Connection to the database*/
-            SqlConnection con = new
-            SqlConnection("Server=199.79.62.22;uid=training;pwd=Training@786;database=cmp");
+            SqlConnection con = new SqlConnection("Server=xxxx;uid=xxx;pwd=xxx;database=xxx");
             /* Select the password from cloudlogin table where username matches */
             SqlCommand cmd = new SqlCommand("select password from cloudlogin where username=@username", con);
             cmd.Parameters.AddWithValue("@username", txtusername.Text);
