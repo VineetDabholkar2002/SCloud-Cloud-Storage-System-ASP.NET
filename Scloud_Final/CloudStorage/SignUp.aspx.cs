@@ -36,6 +36,8 @@ namespace CloudStorage
             this.usrname = username;
             // Response.Write(Session["validity"].ToString());
         }
+        
+        /** This function generates the secret key which will be download once the user signups**/
         public void SecretKey()
         {
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@$%#!%&";
@@ -51,6 +53,12 @@ namespace CloudStorage
             Session["scrkey"] = finalString;
         }
 
+        /** This function uses Regex to perform password validation. Must contain 
+            a) 8-15 characters
+            b) One lowercase and uppercase character
+            c) One Numeric value
+            d) One special case character
+        **/
         public bool ValidatePassword(string password, out string ErrorMessage)
         {
             var input = password;
@@ -141,7 +149,13 @@ namespace CloudStorage
                 return true;
             }
         }
-
+        
+        /** This function uses Regex to perform password validation. Must contain 
+            a) 8-15 characters
+            b) One lowercase and uppercase character
+            c) One Numeric value
+            d) One special case character
+        **/
         public bool ValidatePassword_gen(string password, out string ErrorMessage)
         {
             var input = password;
@@ -220,7 +234,11 @@ namespace CloudStorage
                 Label1.Visible = true;
             }
         }
-
+        
+        
+        /** 
+        *  This function checks if the username is valid or not by checking the database
+        **/
         public void txtusername_TextChanged(object sender, EventArgs e)
         {
             string a = "";
@@ -250,7 +268,10 @@ namespace CloudStorage
             }
             con.Close();
         }
-
+        
+        /** 
+        *  This function checks if the email is valid or not by checking the database
+        **/
         protected void txtemail_TextChanged(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection("Server=199.79.62.22;uid=training;pwd=Training@786;database=cmp");
@@ -283,7 +304,11 @@ namespace CloudStorage
         {
             //Response.Redirect("gmail_otp.aspx");
         }
-
+        
+        
+        /** 
+        *  This function generates a Random OTP after signing up to validate the account used
+        **/
         protected string GenerateRandomOTP(int iOTPLength, string[] saAllowedCharacters)
 
         {
@@ -309,6 +334,10 @@ namespace CloudStorage
             return sOTP;
 
         }
+        
+        /** 
+        *  This function sends the otp to the mail user has entered while signing up
+        **/
         protected void send_otp()
         {
             
